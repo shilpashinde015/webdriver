@@ -1,18 +1,12 @@
-plugins {
-    id 'java'
-    //id 'io.qameta.allure' version '2.7'
-}
+apply plugin: 'java'
+apply plugin: 'application'
 
+mainClassName = 'GoogleTestExample'
 repositories {
-    jcenter()
+    mavenCentral()
 }
-ext {
-    //junitVersion = '4.12'
-    seleniumVersion = '3.141.59'
-    logbackVersion = '1.2.3'
-    webDriverManagerVersion = '3.3.0'
-}
-
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
     testCompile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: seleniumVersion
@@ -26,5 +20,9 @@ dependencies {
 test {
     useTestNG() {
         suites 'src/test/resources/testng.xml'
+    }
+
+    task wrapper(type: Wrapper) {
+        gradleVersion = '5.0'
     }
 }
